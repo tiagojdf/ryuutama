@@ -8,7 +8,8 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  Platform
 } from 'react-native';
 
 class ryuutama extends Component {
@@ -16,7 +17,7 @@ class ryuutama extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
-          Welcome to React Native!
+          Welcome to Ryuutama!
         </Text>
         <Text style={styles.instructions}>
           To get started, edit index.ios.js
@@ -50,3 +51,12 @@ const styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('ryuutama', () => ryuutama);
+
+if(Platform.OS == 'web'){
+  var app = document.createElement('div');
+  document.body.appendChild(app);
+
+  AppRegistry.runApplication('ryuutama', {
+    rootTag: app
+  })
+}
