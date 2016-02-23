@@ -2,7 +2,8 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  ListView
 } from 'react-native';
 
 import styleVariables from '../Config/styleVariables';
@@ -19,7 +20,6 @@ var styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 30,
-    paddingTop: 95,
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: styleVariables.colors.background
@@ -61,16 +61,29 @@ var styles = StyleSheet.create({
 
 
 class Main extends Component {
+
+
+  constructor(props) {
+    super(props);
+
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    this.state = {
+      dataSource: this.ds.cloneWithRows(playerClasses),
+    };
+  }
+
+  _renderRow(playerClass) {
+    return <PlayerClass key={playerClass.name} playerClass={playerClass} />
+  }
   render() {
     return(
       <View style={styles.container}>
         <Header />
         <View style={styles.mainContainer}>
-          {playerClasses.map( (playerClass) => {
-            return (
-              <PlayerClass key={playerClass.name} playerClass={playerClass} />
-            )
-          })}
+          <ListView
+          dataSource={this.state.dataSource}
+          renderRow={this._renderRow}
+          />
         </View>
       </View>
     )
