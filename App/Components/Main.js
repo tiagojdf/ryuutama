@@ -8,7 +8,9 @@ import React, {
 import styleVariables from '../Config/styleVariables';
 
 var Header = require('./Header');
+var PlayerClass = require('./PlayerClass');
 
+import playerClasses from '../Data/playerClasses';
 
 var styles = StyleSheet.create({
   container: {
@@ -64,7 +66,11 @@ class Main extends Component {
       <View style={styles.container}>
         <Header />
         <View style={styles.mainContainer}>
-          <Text>Testing the react router</Text>
+          {playerClasses.map( (playerClass) => {
+            return (
+              <PlayerClass key={playerClass.name} playerClass={playerClass} />
+            )
+          })}
         </View>
       </View>
     )
