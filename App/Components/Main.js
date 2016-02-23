@@ -5,7 +5,7 @@ import React, {
   View
 } from 'react-native';
 
-import {colors} from '../Config/styleVariables';
+import styleVariables from '../Config/styleVariables';
 
 var Header = require('./Header');
 
@@ -20,7 +20,7 @@ var styles = StyleSheet.create({
     paddingTop: 95,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: colors.background
+    backgroundColor: styleVariables.colors.background
   },
   title: {
     marginBottom: 20,

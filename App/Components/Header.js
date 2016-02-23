@@ -5,19 +5,19 @@ import React, {
   View
 } from 'react-native';
 
-import {colors} from '../Config/styleVariables';
+import styleVariables from '../Config/styleVariables';
 
 
 var styles = StyleSheet.create({
   container: {
     padding: 20,
     justifyContent: 'center',
-    backgroundColor: '#104028'
+    backgroundColor: styleVariables.colors.primary
   },
   title: {
     fontSize: 25,
-    textAlign: colors.primary,
-    color: colors.accent
+    textAlign: 'center',
+    color: styleVariables.colors.accent
   },
 });
 
