@@ -18,6 +18,9 @@ var styles = StyleSheet.create({
 
 
 class PlayerClass extends Component {
+  _onPress() {
+    this.props.selectClass(this.props.playerClass)
+  }
   render() {
     return(
       <View style={styles.container}>
@@ -28,14 +31,11 @@ class PlayerClass extends Component {
             <Text key={skill}>{skill}</Text>
           )
         })}
-        <TouchableHighlight onPress={this.selectPlayerClass.bind(this)}>
+        <TouchableHighlight onPress={this._onPress.bind(this)}>
           <Text>Select</Text>
         </TouchableHighlight>
       </View>
     )
-  }
-  selectPlayerClass() {
-    console.warn(this.props.playerClass.name);
   }
 };
 
