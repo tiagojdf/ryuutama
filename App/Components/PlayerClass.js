@@ -2,7 +2,8 @@ import React, {
   Component,
   StyleSheet,
   Text,
-  View
+  View,
+  TouchableHighlight
 } from 'react-native';
 
 import styleVariables from '../Config/styleVariables';
@@ -17,6 +18,9 @@ var styles = StyleSheet.create({
 
 
 class PlayerClass extends Component {
+  _onPress() {
+    this.props.selectClass(this.props.playerClass)
+  }
   render() {
     return(
       <View style={styles.container}>
@@ -27,6 +31,9 @@ class PlayerClass extends Component {
             <Text key={skill}>{skill}</Text>
           )
         })}
+        <TouchableHighlight onPress={this._onPress.bind(this)}>
+          <Text>Select</Text>
+        </TouchableHighlight>
       </View>
     )
   }

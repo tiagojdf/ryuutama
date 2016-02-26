@@ -3,7 +3,7 @@ import React, {
   StyleSheet,
   Text,
   View,
-  ListView
+  ListView,
 } from 'react-native';
 
 import styleVariables from '../Config/styleVariables';
@@ -23,71 +23,61 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: styleVariables.colors.background
-  },
-  title: {
-    marginBottom: 20,
-    fontSize: 25,
-    textAlign: 'center',
-    color: '#fff'
-  },
-  searchInput: {
-    height: 50,
-    padding: 4,
-    marginRight: 5,
-    fontSize: 23,
-    borderWidth: 1,
-    borderColor: 'white',
-    borderRadius: 8,
-    color: 'white'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center'
-  },
-  button: {
-    height: 45,
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
-  },
+  }
 });
 
 
-class Main extends Component {
-
+class PlayerContainer extends Component {
 
   constructor(props) {
     super(props);
-
+    this.playerClass;
     this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
       dataSource: this.ds.cloneWithRows(playerClasses),
+      step: 1,
     };
+    this._selectClass = (playerClass) => {
+      this.setState({
+        playerClass: playerClass,
+        step: this.state.step + 1,
+      });
+      console.warn(this.state.playerClass.name)
+    }
   }
 
+
   _renderRow(playerClass) {
-    return <PlayerClass key={playerClass.name} playerClass={playerClass} />
+    return <PlayerClass key={playerClass.name} playerClass={playerClass} selectClass={this._selectClass}/>
+  }
+
+  renderStep() {
+    switch(this.state.step) {
+      case 1:
+        return (
+          <View>
+            <ListView
+            dataSource={this.state.dataSource}
+            renderRow={this._renderRow.bind(this)}
+            />
+          </View>
+        )
+      case 2:
+        return (<Text>To do</Text>)
+      case 3:
+        return (<Text>Shit happens</Text>)
+    }
   }
   render() {
     return(
       <View style={styles.container}>
         <Header />
         <View style={styles.mainContainer}>
-          <ListView
-          dataSource={this.state.dataSource}
-          renderRow={this._renderRow}
-          />
+          {this.renderStep()}
         </View>
       </View>
     )
   }
 }
 
-module.exports = Main;
+module.exports = PlayerContainer;

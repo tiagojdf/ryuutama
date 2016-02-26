@@ -12,7 +12,7 @@ import React, {
   Platform
 } from 'react-native';
 
-var Main = require('./App/Components/Main');
+var PlayerContainer = require('./App/Components/PlayerContainer');
 
 class ryuutama extends Component {
   render() {
@@ -20,7 +20,7 @@ class ryuutama extends Component {
       <Navigator
         initialRoute={{
           name: 'Ryuutama',
-          component: Main
+          component: PlayerContainer
         }}
         renderScene={(route, navigator) => {
           if (route.component) {
