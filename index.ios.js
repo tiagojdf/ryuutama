@@ -2,14 +2,12 @@
  * Sample React Native App
  * https://github.com/facebook/react-native
  */
-'use strict';
+
 import React, {
   AppRegistry,
   Component,
-  Text,
-  View,
-  Navigator,
-  Platform
+  Platform,
+  Navigator
 } from 'react-native';
 
 var PlayerContainer = require('./App/Components/PlayerContainer');
@@ -34,11 +32,11 @@ class ryuutama extends Component {
 
 AppRegistry.registerComponent('ryuutama', () => ryuutama);
 
-if(Platform.OS == 'web'){
+if (Platform.OS === 'web'){
   var app = document.createElement('div');
   document.body.appendChild(app);
 
   AppRegistry.runApplication('ryuutama', {
     rootTag: app
-  })
+  });
 }

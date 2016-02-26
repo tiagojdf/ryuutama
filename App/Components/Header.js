@@ -24,13 +24,13 @@ var styles = StyleSheet.create({
 
 class Header extends Component {
   render() {
-    return(
+    return (
       <View style={styles.container}>
         <Text style={styles.title}>Ryuutama</Text>
       </View>
-    )
+    );
   }
-};
+}
 
 
 module.exports = Header;

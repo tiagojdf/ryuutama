@@ -1,13 +1,10 @@
 import React, {
   Component,
   StyleSheet,
-  Text,
   View,
+  Text,
   TouchableHighlight
 } from 'react-native';
-
-import styleVariables from '../Config/styleVariables';
-
 
 var styles = StyleSheet.create({
   container: {
@@ -19,25 +16,25 @@ var styles = StyleSheet.create({
 
 class PlayerClass extends Component {
   _onPress() {
-    this.props.selectClass(this.props.playerClass)
+    this.props.selectClass(this.props.playerClass);
   }
   render() {
-    return(
+    return (
       <View style={styles.container}>
         <Text>{this.props.playerClass.name}</Text>
         <Text>{this.props.playerClass.description}</Text>
         {this.props.playerClass.skills.map( (skill) => {
           return (
             <Text key={skill}>{skill}</Text>
-          )
+          );
         })}
         <TouchableHighlight onPress={this._onPress.bind(this)}>
           <Text>Select</Text>
         </TouchableHighlight>
       </View>
-    )
+    );
   }
-};
+}
 
 
 module.exports = PlayerClass;
