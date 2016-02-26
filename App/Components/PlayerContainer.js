@@ -42,17 +42,17 @@ class PlayerContainer extends Component {
         playerClass: playerClass,
         step: this.state.step + 1,
       });
-      console.warn(this.state.playerClass.name)
-    }
+      console.warn(this.state.playerClass.name);
+    };
   }
 
 
   _renderRow(playerClass) {
-    return <PlayerClass key={playerClass.name} playerClass={playerClass} selectClass={this._selectClass}/>
+    return <PlayerClass key={playerClass.name} playerClass={playerClass} selectClass={this._selectClass}/>;
   }
 
   renderStep() {
-    switch(this.state.step) {
+    switch (this.state.step) {
       case 1:
         return (
           <View>
@@ -61,22 +61,22 @@ class PlayerContainer extends Component {
             renderRow={this._renderRow.bind(this)}
             />
           </View>
-        )
+        );
       case 2:
-        return (<Text>To do</Text>)
+        return (<Text>To do</Text>);
       case 3:
-        return (<Text>Shit happens</Text>)
+        return (<Text>Shit happens</Text>);
     }
   }
   render() {
-    return(
+    return (
       <View style={styles.container}>
         <Header />
         <View style={styles.mainContainer}>
           {this.renderStep()}
         </View>
       </View>
-    )
+    );
   }
 }
 
