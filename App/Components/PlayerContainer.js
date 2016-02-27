@@ -24,36 +24,42 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: styleVariables.colors.background
   }
-});
+})
 
+import {store} from '../State/store'
+import {nextStep} from '../State/step.actions'
+import {selectClass} from '../State/player.actions'
 
 class PlayerContainer extends Component {
 
   constructor(props) {
-    super(props);
-    this.playerClass;
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+    super(props)
+    this.playerClass
+    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
     this.state = {
       dataSource: this.ds.cloneWithRows(playerClasses),
-      step: 1,
-    };
+    }
     this._selectClass = (playerClass) => {
-      this.setState({
-        playerClass: playerClass,
-        step: this.state.step + 1,
-      });
-      console.warn(this.state.playerClass.name);
-    };
+      store.dispatch(selectClass(playerClass))
+      store.dispatch(nextStep())
+    }
   }
 
+  componentDidMount() {
+    this.unsubscribe = store.subscribe(() => this.forceUpdate())
+  }
+  componentWillUnmount() { this.unsubscribe() }
 
   _renderRow(playerClass) {
-    return <PlayerClass key={playerClass.name} playerClass={playerClass} selectClass={this._selectClass}/>;
+    return <PlayerClass
+      key={playerClass.name}
+      playerClass={playerClass}
+      selectClass={this._selectClass}/>
   }
 
-  renderStep() {
-    switch (this.state.step) {
-      case 1:
+  renderStep(step) {
+    switch (step) {
+      case 0:
         return (
           <View>
             <ListView
@@ -61,23 +67,24 @@ class PlayerContainer extends Component {
             renderRow={this._renderRow.bind(this)}
             />
           </View>
-        );
+        )
+      case 1:
+        return (<Text>To do</Text>)
       case 2:
-        return (<Text>To do</Text>);
-      case 3:
-        return (<Text>Shit happens</Text>);
+        return (<Text>Shit happens</Text>)
     }
   }
   render() {
+    const state = store.getState()
     return (
       <View style={styles.container}>
         <Header />
         <View style={styles.mainContainer}>
-          {this.renderStep()}
+          {this.renderStep(state.step)}
         </View>
       </View>
-    );
+    )
   }
 }
 
-module.exports = PlayerContainer;
+module.exports = PlayerContainer

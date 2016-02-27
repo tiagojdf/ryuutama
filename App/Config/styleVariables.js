@@ -1,6 +1,6 @@
-import {Platform} from 'react-native';
+import {Platform} from 'react-native'
 
-const statusBarHeight = Platform.OS === 'ios' ? 20 : 0;
+const statusBarHeight = Platform.OS === 'ios' ? 20 : 0
 
 export default {
   //  MARGINS
@@ -39,4 +39,4 @@ export default {
 
   // BORDER RADIUS
   radius: 8,
-};
+}
