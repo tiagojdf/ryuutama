@@ -4,14 +4,14 @@ import React, {
   Text,
   View,
   ListView,
-} from 'react-native';
+} from 'react-native'
 
-import styleVariables from '../Config/styleVariables';
+import styleVariables from '../Config/styleVariables'
 
-var Header = require('./Header');
-var PlayerClass = require('./PlayerClass');
+var Header = require('./Header')
+var PlayerClass = require('./PlayerClass')
 
-import playerClasses from '../Data/playerClasses';
+import playerClasses from '../Data/playerClasses'
 
 var styles = StyleSheet.create({
   container: {
