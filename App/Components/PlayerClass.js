@@ -9,6 +9,10 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
+    padding: 5,
+    borderColor: 'black',
+    borderWidth: 1,
+    marginBottom: 5
   },
 })
 

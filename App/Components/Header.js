@@ -3,9 +3,9 @@ import React, {
   StyleSheet,
   Text,
   View
-} from 'react-native';
+} from 'react-native'
 
-import styleVariables from '../Config/styleVariables';
+import styleVariables from '../Config/styleVariables'
 
 
 var styles = StyleSheet.create({
@@ -19,7 +19,7 @@ var styles = StyleSheet.create({
     textAlign: 'center',
     color: styleVariables.colors.accent
   },
-});
+})
 
 
 class Header extends Component {
@@ -28,9 +28,9 @@ class Header extends Component {
       <View style={styles.container}>
         <Text style={styles.title}>Ryuutama</Text>
       </View>
-    );
+    )
   }
 }
 
 
-module.exports = Header;
+module.exports = Header

@@ -11,7 +11,7 @@ import styleVariables from '../Config/styleVariables'
 var Header = require('./Header')
 var PlayerClass = require('./PlayerClass')
 
-import playerClasses from '../Data/playerClasses'
+import {playerClasses} from '../Data/playerClasses'
 
 var styles = StyleSheet.create({
   container: {
@@ -23,7 +23,7 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: styleVariables.colors.background
-  }
+  },
 })
 
 import {store} from '../State/store'
@@ -61,12 +61,10 @@ class PlayerContainer extends Component {
     switch (step) {
       case 0:
         return (
-          <View>
             <ListView
             dataSource={this.state.dataSource}
             renderRow={this._renderRow.bind(this)}
             />
-          </View>
         )
       case 1:
         return (<Text>To do</Text>)
