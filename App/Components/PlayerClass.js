@@ -35,6 +35,13 @@ class PlayerClass extends Component {
     );
   }
 }
-
+PlayerClass.propTypes = {
+  selectClass: React.PropTypes.func.isRequired,
+  playerClass: React.PropTypes.shape({
+    name: React.PropTypes.string.isRequired,
+    description: React.PropTypes.string.isRequired,
+    skills: React.PropTypes.array.isRequired,
+  }).isRequired,
+};
 
 module.exports = PlayerClass;
