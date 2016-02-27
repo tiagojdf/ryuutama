@@ -8,35 +8,43 @@ import React, {
   Component,
   Platform,
   Navigator
-} from 'react-native';
+} from 'react-native'
 
-var PlayerContainer = require('./App/Components/PlayerContainer');
+// import { createStore } from 'redux'
+// import { step } from './State/step.reducer'
+// import { Provider } from 'react-redux'
+
+// let store = createStore(step)
+
+var PlayerContainer = require('./App/Components/PlayerContainer')
 
 class ryuutama extends Component {
   render() {
     return (
-      <Navigator
-        initialRoute={{
-          name: 'Ryuutama',
-          component: PlayerContainer
-        }}
-        renderScene={(route, navigator) => {
-          if (route.component) {
-            return React.createElement(route.component, { navigator });
-          }
-        }}
-      />
-    );
+      // <Provider store={store}>
+        <Navigator
+          initialRoute={{
+            name: 'Ryuutama',
+            component: PlayerContainer
+          }}
+          renderScene={(route, navigator) => {
+            if (route.component) {
+              return React.createElement(route.component, { navigator })
+            }
+          }}
+        />
+      // </Provider>
+    )
   }
 }
 
-AppRegistry.registerComponent('ryuutama', () => ryuutama);
+AppRegistry.registerComponent('ryuutama', () => ryuutama)
 
 if (Platform.OS === 'web'){
-  var app = document.createElement('div');
-  document.body.appendChild(app);
+  var app = document.createElement('div')
+  document.body.appendChild(app)
 
   AppRegistry.runApplication('ryuutama', {
     rootTag: app
-  });
+  })
 }
