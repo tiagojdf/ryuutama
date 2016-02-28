@@ -30,11 +30,15 @@ export default {
 
   // COLORS
   colors: {
-    primary: '#104028',
-    accent: '#F4E6A9',
+    primary: '#91C578',
+    accent: 'white',
     background: '#F2F1F1',  // very light gray
     black: '#444444',
     white: '#FFFFFF',
+    springDarkGreen: '#578461',
+    springLightGreen: '#91C578',
+    winterDarkBlue: '#2B80A0',
+    winterLightBlue: '#92D7F8',
   },
 
   // BORDER RADIUS
