@@ -8,7 +8,7 @@ import React, {
 
 import styleVariables from '../Config/styleVariables'
 
-var Header = require('./Header')
+var Header = require('./Header/Header')
 var PlayerClass = require('./PlayerClass/PlayerClass')
 
 import {playerClasses} from '../Data/playerClasses'
@@ -39,10 +39,6 @@ class PlayerContainer extends Component {
     this.state = {
       dataSource: this.ds.cloneWithRows(playerClasses),
     }
-    this._selectClass = (playerClass) => {
-      store.dispatch(selectClass(playerClass))
-      store.dispatch(nextStep())
-    }
   }
 
   componentDidMount() {
@@ -54,7 +50,7 @@ class PlayerContainer extends Component {
     return <PlayerClass
       key={playerClass.name}
       playerClass={playerClass}
-      selectClass={this._selectClass}/>
+      selectClass={this.props.onSelectClass}/>
   }
 
   renderStep(step) {
@@ -73,16 +69,42 @@ class PlayerContainer extends Component {
     }
   }
   render() {
-    const state = store.getState()
     return (
       <View style={styles.container}>
-        <Header />
+        <Header title={'Ryuutama'}/>
         <View style={styles.mainContainer}>
-          {this.renderStep(state.step)}
+          {this.renderStep(this.props.step)}
         </View>
       </View>
     )
   }
 }
+
+PlayerContainer.propTypes = {
+  step: React.PropTypes.number.isRequired,
+  onSelectClass: React.PropTypes.func.isRequired,
+}
+
+const mapStateToProps = (state) => {
+  return {
+    step: state.step
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSelectClass: playerClass => {
+      dispatch(selectClass(playerClass))
+      dispatch(nextStep())
+    }
+  }
+}
+
+import { connect } from 'react-redux'
+
+PlayerContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlayerContainer)
 
 module.exports = PlayerContainer
