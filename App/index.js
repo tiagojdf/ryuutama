@@ -4,7 +4,7 @@ import React, {
 } from 'react-native'
 
 import { Provider } from 'react-redux'
-import { store } from './State/store'
+import store from './State/store'
 
 var PlayerContainer = require('./Components/PlayerContainer')
 

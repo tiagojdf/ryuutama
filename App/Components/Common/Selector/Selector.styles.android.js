@@ -13,7 +13,7 @@ export default StyleSheet.create({
     paddingRight: 10,
     backgroundColor: 'white',
     elevation: 2,
-    margin: 5
+    margin: 5,
   },
   name: {
     fontSize: 18,

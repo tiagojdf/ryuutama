@@ -3,6 +3,7 @@
 */
 export const NEXT_STEP = 'NEXT_STEP'
 export const PREVIOUS_STEP = 'PREVIOUS_STEP'
+export const GO_TO_STEP = 'GO_TO_STEP'
 
 export function nextStep() {
   return {
@@ -13,5 +14,12 @@ export function nextStep() {
 export function previousStep() {
   return {
     type: PREVIOUS_STEP,
+  }
+}
+
+export function goToStep(step) {
+  return {
+    type: GO_TO_STEP,
+    step
   }
 }

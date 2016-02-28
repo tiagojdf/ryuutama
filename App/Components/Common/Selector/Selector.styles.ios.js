@@ -12,7 +12,7 @@ export default StyleSheet.create({
     paddingLeft: 10,
     paddingRight: 10,
     backgroundColor: '#FAFAFA',
-    marginBottom: 5,
+    margin: 5,
     shadowColor: '#000000',
     shadowOpacity: 0.8,
     shadowRadius: 2,
