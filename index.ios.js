@@ -10,18 +10,15 @@ import React, {
   Navigator
 } from 'react-native'
 
-// import { createStore } from 'redux'
-// import { step } from './State/step.reducer'
-// import { Provider } from 'react-redux'
-
-// let store = createStore(step)
+import { Provider } from 'react-redux'
+import { store } from './App/State/store'
 
 var PlayerContainer = require('./App/Components/PlayerContainer')
 
 class ryuutama extends Component {
   render() {
     return (
-      // <Provider store={store}>
+      <Provider store={store}>
         <Navigator
           initialRoute={{
             name: 'Ryuutama',
@@ -33,7 +30,7 @@ class ryuutama extends Component {
             }
           }}
         />
-      // </Provider>
+      </Provider>
     )
   }
 }

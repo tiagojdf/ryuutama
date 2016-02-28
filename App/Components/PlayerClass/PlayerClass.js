@@ -24,6 +24,7 @@ const PlayerClass = ({playerClass, selectClass }) => (
       </View>
     </View>
   )
+
 PlayerClass.propTypes = {
   selectClass: React.PropTypes.func.isRequired,
   playerClass: React.PropTypes.shape({
