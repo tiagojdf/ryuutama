@@ -39,7 +39,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   select: {
-    backgroundColor: styleVariables.colors.springLightGreen,
+    backgroundColor: styleVariables.colors.springDarkGreen,
     padding: 5,
     borderRadius: 5,
   },

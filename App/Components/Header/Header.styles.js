@@ -8,7 +8,7 @@ export default StyleSheet.create({
   container: {
     padding: 20,
     justifyContent: 'center',
-    backgroundColor: styleVariables.colors.primary
+    backgroundColor: styleVariables.colors.springDarkGreen
   },
   title: {
     fontSize: 25,
