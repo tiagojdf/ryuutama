@@ -1,14 +1,13 @@
 import React, {
   Component,
   StyleSheet,
-  Text,
   View,
 } from 'react-native'
 
-import styleVariables from '../Config/styleVariables'
-
 var Header = require('./Header/Header')
+var CharacterView = require('./CharacterView/CharacterView')
 var SelectorList = require('./Common/SelectorList/SelectorList')
+var StepSelector = require('./Common/StepSelector/StepSelector')
 
 import {playerClasses} from '../Data/playerClasses'
 import {playerTypes} from '../Data/playerTypes'
@@ -16,13 +15,12 @@ import {playerTypes} from '../Data/playerTypes'
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F1F8E9'
   },
   mainContainer: {
     flex: 1,
-    padding: 5,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: styleVariables.colors.background
   },
 })
 
@@ -37,15 +35,15 @@ class PlayerContainer extends Component {
         return <SelectorList list={playerClasses} onSelect={this.props.onSelectClass}/>
       case 1:
         return <SelectorList list={playerTypes} onSelect={this.props.onSelectType}/>
-      case 2:
-        console.log(this.props.player)
-        return (<Text>Check developer console for result</Text>)
+      default:
+        return <CharacterView {...this.props.player}/>
     }
   }
   render() {
     return (
       <View style={styles.container}>
         <Header title={'Ryuutama'}/>
+        <StepSelector />
         <View style={styles.mainContainer}>
           {this.renderStep(this.props.step)}
         </View>

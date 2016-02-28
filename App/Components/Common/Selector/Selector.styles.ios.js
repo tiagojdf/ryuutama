@@ -2,7 +2,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import styleVariables from '../../Config/styleVariables'
+import styleVariables from '../../../Config/styleVariables'
 
 export default StyleSheet.create({
   container: {
@@ -11,12 +11,15 @@ export default StyleSheet.create({
     padding: 5,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#FFF9C4',
-    borderColor: '#FFECB3',
-    borderBottomColor: '#FFD54F',
-    borderRightColor: '#FFE082',
-    borderWidth: 2,
-    marginBottom: 5
+    backgroundColor: '#FAFAFA',
+    margin: 5,
+    shadowColor: '#000000',
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    shadowOffset: {
+      height: 1,
+      width: 0,
+    }
   },
   name: {
     fontSize: 18,
