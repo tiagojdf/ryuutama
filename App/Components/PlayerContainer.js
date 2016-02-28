@@ -16,13 +16,12 @@ import {playerTypes} from '../Data/playerTypes'
 var styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F1F8E9'
   },
   mainContainer: {
     flex: 1,
-    padding: 5,
     flexDirection: 'column',
     justifyContent: 'center',
-    backgroundColor: styleVariables.colors.background
   },
 })
 

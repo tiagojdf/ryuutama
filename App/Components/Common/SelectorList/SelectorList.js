@@ -3,7 +3,7 @@ import React, {
   ListView,
 } from 'react-native'
 
-var Selector = require('../Selector')
+var Selector = require('../Selector/Selector')
 
 class SelectorList extends Component {
   constructor(props) {

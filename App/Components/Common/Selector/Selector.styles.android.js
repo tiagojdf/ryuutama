@@ -2,7 +2,7 @@ import {
   StyleSheet,
 } from 'react-native'
 
-import styleVariables from '../../Config/styleVariables'
+import styleVariables from '../../../Config/styleVariables'
 
 export default StyleSheet.create({
   container: {
@@ -11,12 +11,9 @@ export default StyleSheet.create({
     padding: 5,
     paddingLeft: 10,
     paddingRight: 10,
-    backgroundColor: '#FFF9C4',
-    borderColor: '#FFECB3',
-    borderBottomColor: '#FFD54F',
-    borderRightColor: '#FFE082',
-    borderWidth: 2,
-    marginBottom: 5
+    backgroundColor: 'white',
+    elevation: 2,
+    margin: 5
   },
   name: {
     fontSize: 18,
@@ -24,8 +21,7 @@ export default StyleSheet.create({
     marginBottom: 10,
   },
   description: {
-    fontStyle: 'italic',
-    fontSize: 12,
+    fontSize: 14,
     marginBottom: 5,
   },
   skills: {
@@ -35,7 +31,7 @@ export default StyleSheet.create({
     marginBottom: 5,
   },
   skill: {
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: 'bold',
   },
   select: {
