@@ -9,7 +9,7 @@ import React, {
 import styleVariables from '../Config/styleVariables'
 
 var Header = require('./Header')
-var PlayerClass = require('./PlayerClass')
+var PlayerClass = require('./PlayerClass/PlayerClass')
 
 import {playerClasses} from '../Data/playerClasses'
 
@@ -19,7 +19,7 @@ var styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    padding: 30,
+    padding: 5,
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: styleVariables.colors.background
