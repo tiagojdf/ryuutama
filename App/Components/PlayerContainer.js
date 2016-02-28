@@ -3,15 +3,15 @@ import React, {
   StyleSheet,
   Text,
   View,
-  ListView,
 } from 'react-native'
 
 import styleVariables from '../Config/styleVariables'
 
 var Header = require('./Header/Header')
-var PlayerClass = require('./PlayerClass/PlayerClass')
+var SelectorList = require('./Common/SelectorList/SelectorList')
 
 import {playerClasses} from '../Data/playerClasses'
+import {playerTypes} from '../Data/playerTypes'
 
 var styles = StyleSheet.create({
   container: {
@@ -26,46 +26,20 @@ var styles = StyleSheet.create({
   },
 })
 
-import {store} from '../State/store'
 import {nextStep} from '../State/step.actions'
-import {selectClass} from '../State/player.actions'
+import {selectClass, selectType} from '../State/player.actions'
 
 class PlayerContainer extends Component {
-
-  constructor(props) {
-    super(props)
-    this.playerClass
-    this.ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2})
-    this.state = {
-      dataSource: this.ds.cloneWithRows(playerClasses),
-    }
-  }
-
-  componentDidMount() {
-    this.unsubscribe = store.subscribe(() => this.forceUpdate())
-  }
-  componentWillUnmount() { this.unsubscribe() }
-
-  _renderRow(playerClass) {
-    return <PlayerClass
-      key={playerClass.name}
-      playerClass={playerClass}
-      selectClass={this.props.onSelectClass}/>
-  }
 
   renderStep(step) {
     switch (step) {
       case 0:
-        return (
-            <ListView
-            dataSource={this.state.dataSource}
-            renderRow={this._renderRow.bind(this)}
-            />
-        )
+        return <SelectorList list={playerClasses} onSelect={this.props.onSelectClass}/>
       case 1:
-        return (<Text>To do</Text>)
+        return <SelectorList list={playerTypes} onSelect={this.props.onSelectType}/>
       case 2:
-        return (<Text>Shit happens</Text>)
+        console.log(this.props.player)
+        return (<Text>Check developer console for result</Text>)
     }
   }
   render() {
@@ -82,12 +56,15 @@ class PlayerContainer extends Component {
 
 PlayerContainer.propTypes = {
   step: React.PropTypes.number.isRequired,
+  player: React.PropTypes.object.isRequired,
   onSelectClass: React.PropTypes.func.isRequired,
+  onSelectType: React.PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state) => {
   return {
-    step: state.step
+    step: state.step,
+    player: state.player
   }
 }
 
@@ -95,6 +72,10 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onSelectClass: playerClass => {
       dispatch(selectClass(playerClass))
+      dispatch(nextStep())
+    },
+    onSelectType: playerType => {
+      dispatch(selectType(playerType))
       dispatch(nextStep())
     }
   }
