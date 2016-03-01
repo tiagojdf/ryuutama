@@ -19,9 +19,9 @@ export function selectType(playerType) {
   }
 }
 
-export function updateStats(playerStats) {
+export function updateStats(stats) {
   return {
     type: UPDATE_STATS,
-    playerStats,
+    stats,
   }
 }

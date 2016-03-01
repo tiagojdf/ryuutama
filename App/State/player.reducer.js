@@ -9,7 +9,7 @@ export function player(state = {}, action) {
     case SELECT_TYPE:
       return Object.assign({}, state, {playerType: action.playerType})
     case UPDATE_STATS:
-      return Object.assign({}, state, {...action.playerStats})
+      return Object.assign({}, state, {stats: action.stats})
     default:
       return state
   }

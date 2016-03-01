@@ -1,43 +1,83 @@
 import React, {
   View,
-  TextInput,
   Text,
   TouchableHighlight,
   Component
 } from 'react-native'
+
 import { connect } from 'react-redux'
 
-// import {goToStep} from '../../../State/step.actions'
+import {updateStats} from '../../State/player.actions'
+import {nextStep} from '../../State/step.actions'
 
 import styles from './StartingStats.styles'
 
-const STATS = ['STR', 'DEX', 'INT', 'SPI']
-
 class StartingStats extends Component {
-  constructor(props) {
+  constructor(dispatch, props) {
     super(props)
     this.state = {
-      STR: '6',
-      DEX: '6',
-      INT: '6',
-      SPI: '6',
+      stats: {
+        STR: 6,
+        DEX: 6,
+        INT: 6,
+        SPI: 6,
+      },
+      valid: true,
     }
   }
+
+  _validateStats(stats) {
+    return Object.keys(stats).map((STAT) => {
+      return stats[STAT]
+    }).reduce((a,b) => a + b) === 24
+  }
+  _increase(STAT) {
+    var stats = this.state.stats
+    if (stats[STAT] < 8) {
+      stats[STAT] = stats[STAT] + 2
+      this.setState(
+        {
+          stats: stats,
+          valid: this._validateStats(stats)
+        })
+    }
+  }
+  _decrease(STAT) {
+    var stats = this.state.stats
+    if (stats[STAT] > 4) {
+      stats[STAT] = stats[STAT] - 2
+      this.setState(
+        {
+          stats: stats,
+          valid: this._validateStats(stats)
+        })
+    }
+  }
+
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, !this.state.valid && styles.invalid]}>
       {
-        STATS.map((STAT) => {return (
+        Object.keys(this.state.stats).map((STAT) => {return (
           <View key={STAT}>
-          <Text>{STAT}</Text>
-            <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-            onChangeText={(VALUE) => this.setState({[STAT]:VALUE})}
-            value={this.state[STAT]}
-          />
+          <Text>{STAT}: {this.state.stats[STAT]}</Text>
+          <TouchableHighlight onPress={() => this._increase(STAT)}>
+            <Text> + </Text>
+          </TouchableHighlight>
+          <TouchableHighlight onPress={() => this._decrease(STAT)}>
+            <Text> - </Text>
+          </TouchableHighlight>
           </View>
         )})
       }
+      <TouchableHighlight onPress={() => {
+          if (this.state.valid) {
+            this.props.dispatch(updateStats(this.state.stats))
+            this.props.dispatch(nextStep())
+          }
+        } }>
+        <Text> Select </Text>
+      </TouchableHighlight>
       </View>
     )
   }
