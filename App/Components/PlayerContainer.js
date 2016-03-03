@@ -5,9 +5,11 @@ import React, {
 } from 'react-native'
 
 var Header = require('./Header/Header')
-var CharacterView = require('./CharacterView/CharacterView')
+var CharacterOverview = require('./CharacterOverview/CharacterOverview')
+var CharacterSettings = require('./CharacterSettings/CharacterSettings')
 var SelectorList = require('./Common/SelectorList/SelectorList')
 var StepSelector = require('./Common/StepSelector/StepSelector')
+var StartingStats = require('./StartingStats/StartingStats')
 var StartingStats = require('./StartingStats/StartingStats')
 
 import {playerClasses} from '../Data/playerClasses'
@@ -38,8 +40,10 @@ class PlayerContainer extends Component {
         return <SelectorList list={playerTypes} onSelect={this.props.onSelectType}/>
       case 2:
         return <StartingStats />
+      case 3:
+        return <CharacterSettings />
       default:
-        return <CharacterView {...this.props.player}/>
+        return <CharacterOverview {...this.props.player}/>
     }
   }
   render() {
