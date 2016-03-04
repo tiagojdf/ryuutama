@@ -11,9 +11,11 @@ import styles from './StepSelector.styles'
 
 let StepSelector = ({ dispatch }) => (
     <View style={styles.container}>
-      <TouchableHighlight onPress={() => dispatch(goToStep(0))}><Text>0</Text></TouchableHighlight>
-      <TouchableHighlight onPress={() => dispatch(goToStep(1))}><Text>1</Text></TouchableHighlight>
-      <TouchableHighlight onPress={() => dispatch(goToStep(2))}><Text>2</Text></TouchableHighlight>
+      <TouchableHighlight onPress={() => dispatch(goToStep(0))}><Text>Class</Text></TouchableHighlight>
+      <TouchableHighlight onPress={() => dispatch(goToStep(1))}><Text>Type</Text></TouchableHighlight>
+      <TouchableHighlight onPress={() => dispatch(goToStep(2))}><Text>Stats</Text></TouchableHighlight>
+      <TouchableHighlight onPress={() => dispatch(goToStep(3))}><Text>Character</Text></TouchableHighlight>
+      <TouchableHighlight onPress={() => dispatch(goToStep(4))}><Text>Overview</Text></TouchableHighlight>
     </View>
   )
 
