@@ -1,13 +1,22 @@
 import React, {
   View,
   Text,
-  TouchableHighlight
+  TouchableHighlight,
+  Image
 } from 'react-native'
 
 import styles from './Selector.styles'
 
 const Selector = ({data, select }) => (
     <View style={styles.container}>
+      {
+         data.image ?
+          <Image
+            style={styles.image}
+            source={data.image}
+            />
+          : null
+      }
       <Text style={styles.name}>{data.name}</Text>
       <Text style={styles.description}>{data.description}</Text>
       <View style={styles.skills}>

@@ -16,6 +16,7 @@ export default StyleSheet.create({
     margin: 5,
   },
   name: {
+    alignSelf: 'center',
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
@@ -44,5 +45,9 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
     color: 'white',
+  },
+  image: {
+    flex: 1,
+    alignSelf: 'center'
   }
 })
