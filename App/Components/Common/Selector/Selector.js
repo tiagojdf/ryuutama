@@ -7,6 +7,8 @@ import React, {
 
 import styles from './Selector.styles'
 
+var _ = require('lodash')
+
 const Selector = ({data, select }) => (
     <View style={styles.container}>
       {
@@ -17,7 +19,7 @@ const Selector = ({data, select }) => (
             />
           : null
       }
-      <Text style={styles.name}>{data.name}</Text>
+      <Text style={styles.name}>{_.capitalize(data.name)}</Text>
       <Text style={styles.description}>{data.description}</Text>
       <View style={styles.skills}>
         {data.skills.map( (skill) => {
