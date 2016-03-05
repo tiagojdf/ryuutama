@@ -7,7 +7,10 @@ import React, {
 
 import { connect } from 'react-redux'
 
-import {updateStats} from '../../State/player.actions'
+import {
+  updateStats,
+} from '../../State/player.actions'
+
 import {nextStep} from '../../State/step.actions'
 
 import styles from './StartingStats.styles'
