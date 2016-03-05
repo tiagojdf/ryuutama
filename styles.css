@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+}
+.background {
+  background: url("./page/images/background.png") no-repeat center center;
+  background-size: cover;
+}
+.title {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  background-color: rgb(77, 121, 86);
+  color: white;
+  margin-top: 0;
+}
+.centered {
+  display: block;
+  margin: 0 auto;
+}
+.warning {
+  color: #9F6000;
+  background-color: #FEEFB3;
+  flex: 1;
+  padding: 20px;
+  margin: 20px 0 0;
+}
+.license {
+  padding: 20px;
+  background-color: white;
+}
