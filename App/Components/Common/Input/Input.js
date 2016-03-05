@@ -4,10 +4,12 @@ import React, {
   TextInput
 } from 'react-native'
 
+var _ = require('lodash')
+
 var Input = ({tag, text, changeText}) => {
     return (
           <View>
-            <Text>{tag.charAt(0).toUpperCase() + tag.slice(1)}:</Text>
+            <Text>{_.capitalize(tag)}:</Text>
               <TextInput
                 style={{height: 40, borderColor: 'gray', borderWidth: 1}}
                 onChangeText={(newText) => changeText(newText)}
@@ -19,8 +21,8 @@ var Input = ({tag, text, changeText}) => {
 
 
 Input.propTypes = {
-  tag: React.PropTypes.string.isRequired,
-  text: React.PropTypes.any.isRequired,
+  tag: React.PropTypes.string,
+  text: React.PropTypes.any,
   changeText: React.PropTypes.func.isRequired,
 }
 

@@ -19,7 +19,7 @@ const CharacterOverview = ({
     <View style={styles.container}>
       <View style={styles.row}>
         <Text style={styles.cell}>Name: {name}</Text>
-        <Text style={styles.cell}>Gender: {gender}</Text>
+        <Text style={styles.cell}>{gender}</Text>
         <Text style={styles.cell}>Age: {age}</Text>
       </View>
       <View style={styles.row}>
@@ -39,7 +39,7 @@ const CharacterOverview = ({
       }
       </View>
       <Text style={styles.cell}>Hometown: {hometown}</Text>
-      <Text style={styles.cell}>Appearanc: {appearance}</Text>
+      <Text style={styles.cell}>Appearance: {appearance}</Text>
       <Text style={styles.cell}>Notes: {notes}</Text>
     </View>
   )

@@ -1,14 +1,25 @@
 import React, {
   View,
   Text,
-  TouchableHighlight
+  TouchableHighlight,
+  Image
 } from 'react-native'
 
 import styles from './Selector.styles'
 
+var _ = require('lodash')
+
 const Selector = ({data, select }) => (
     <View style={styles.container}>
-      <Text style={styles.name}>{data.name}</Text>
+      {
+         data.image ?
+          <Image
+            style={styles.image}
+            source={data.image}
+            />
+          : null
+      }
+      <Text style={styles.name}>{_.capitalize(data.name)}</Text>
       <Text style={styles.description}>{data.description}</Text>
       <View style={styles.skills}>
         {data.skills.map( (skill) => {

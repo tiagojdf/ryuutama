@@ -25,6 +25,7 @@ export default StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    alignSelf: 'center',
   },
   description: {
     fontStyle: 'italic',
@@ -51,5 +52,9 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 14,
     color: 'white',
+  },
+  image: {
+    flex: 1,
+    alignSelf: 'center'
   }
 })
