@@ -10,33 +10,44 @@ import {
   UPDATE_NOTES,
 } from './player.actions'
 
+// TODO refactor all this calculations to occur on SELECT_CLASS or SELECT_TYPE if stats exist
 function calculateMaxHp(type, STR) {
   return (type === 'attack' ? 4 : 0) + STR * 2
 }
 function calculateMaxMp(type, SPI) {
   return (type === 'magic' ? 4 : 0) + SPI * 2
 }
+function calculateCC(travellerClass, type, STR) {
+  return (type === 'technical' ? 3 : 0) + (travellerClass === 'farmer' ? 3 : 0) + STR
+}
+// TODO either use reselect or move this to its own reducer
+// idea: 2 step setting, as substats depends on stats and other player stuff
+function calculateSubstats(traveller) {
+  if (!traveller.stats || !traveller.playerClass || !traveller.playerType) {return}
+  return {
+    maxHp: calculateMaxHp(traveller.playerType.name, traveller.stats.STR),
+    maxMp: calculateMaxMp(traveller.playerType.name, traveller.stats.SPI),
+    CC: calculateCC(traveller.playerClass.name, traveller.playerType.name, traveller.stats.STR),
+  }
+}
 
-export function player(state = {}, action) {
+export function player(state = {
+  stats: {
+    STR: 6,
+    DEX: 6,
+    INT: 6,
+    SPI: 6,
+  }
+}, action) {
   switch (action.type) {
     case SELECT_CLASS:
-      return Object.assign({}, state, {playerClass: action.playerClass})
+      return Object.assign({}, state, {playerClass: action.playerClass, substats: calculateSubstats(state)})
 
     case SELECT_TYPE:
-      if (state.stats) {
-        var substats = Object.assign({}, {
-          maxHp: calculateMaxHp(action.playerType.name, state.stats.STR),
-          maxMp: calculateMaxMp(action.playerType.name, state.stats.SPI)
-        })
-      }
-      return Object.assign({}, state, {playerType: action.playerType, substats: substats})
+      return Object.assign({}, state, {playerType: action.playerType, substats: calculateSubstats(state)})
 
     case UPDATE_STATS:
-      substats = Object.assign({}, {
-          maxHp: calculateMaxHp(state.playerType.name, action.stats.STR),
-          maxMp: calculateMaxMp(state.playerType.name, action.stats.SPI)
-        })
-      return Object.assign({}, state, {stats: action.stats, substats: substats})
+      return Object.assign({}, state, {stats: action.stats, substats: calculateSubstats(state)})
 
     case UPDATE_NAME:
       return Object.assign({}, state, {name: action.name})

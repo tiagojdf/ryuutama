@@ -27,9 +27,13 @@ const CharacterOverview = ({
         <Text style={styles.cell}>Type: {playerType.name}</Text>
       </View>
       <View style={styles.row}>
-        <Text style={styles.cell}>HP: {substats.maxHp}/{substats.maxHp}</Text>
-        <Text style={styles.cell}>MP: {substats.maxMp}/{substats.maxMp}</Text>
-      </View>
+        {
+          Object.keys(substats).map((SUBSTAT) => {return (
+            <Text style={styles.cell} key={SUBSTAT}>{SUBSTAT}: {substats[SUBSTAT]}</Text>
+          )
+        })
+      }
+    </View>
       <View style={styles.row}>
         {
           Object.keys(stats).map((STAT) => {return (

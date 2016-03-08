@@ -16,15 +16,9 @@ import {nextStep} from '../../State/step.actions'
 import styles from './StartingStats.styles'
 
 class StartingStats extends Component {
-  constructor(dispatch, props) {
+  constructor(props) {
     super(props)
     this.state = {
-      stats: {
-        STR: 6,
-        DEX: 6,
-        INT: 6,
-        SPI: 6,
-      },
       valid: true,
     }
   }
@@ -35,23 +29,21 @@ class StartingStats extends Component {
     }).reduce((a,b) => a + b) === 24
   }
   _increase(STAT) {
-    var stats = this.state.stats
+    var stats = this.props.stats
     if (stats[STAT] < 8) {
       stats[STAT] = stats[STAT] + 2
       this.setState(
         {
-          stats: stats,
           valid: this._validateStats(stats)
         })
     }
   }
   _decrease(STAT) {
-    var stats = this.state.stats
+    var stats = this.props.stats
     if (stats[STAT] > 4) {
       stats[STAT] = stats[STAT] - 2
       this.setState(
         {
-          stats: stats,
           valid: this._validateStats(stats)
         })
     }
@@ -61,9 +53,9 @@ class StartingStats extends Component {
     return (
       <View style={[styles.container, !this.state.valid && styles.invalid]}>
       {
-        Object.keys(this.state.stats).map((STAT) => {return (
+        Object.keys(this.props.stats).map((STAT) => {return (
           <View key={STAT}>
-          <Text>{STAT}: {this.state.stats[STAT]}</Text>
+          <Text>{STAT}: {this.props.stats[STAT]}</Text>
           <TouchableHighlight onPress={() => this._increase(STAT)}>
             <Text> + </Text>
           </TouchableHighlight>
@@ -73,12 +65,7 @@ class StartingStats extends Component {
           </View>
         )})
       }
-      <TouchableHighlight onPress={() => {
-          if (this.state.valid) {
-            this.props.dispatch(updateStats(this.state.stats))
-            this.props.dispatch(nextStep())
-          }
-        } }>
+      <TouchableHighlight onPress={() => this.props.onSelectStats(this.props.stats)}>
         <Text> Select </Text>
       </TouchableHighlight>
       </View>
@@ -86,10 +73,29 @@ class StartingStats extends Component {
   }
 }
 
-
 StartingStats.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
+  stats: React.PropTypes.object.isRequired,
+  onSelectStats: React.PropTypes.func.isRequired,
 }
-StartingStats = connect()(StartingStats)
+
+const mapStateToProps = (state) => {
+  return {
+    stats: state.player.stats
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onSelectStats: stats => {
+      dispatch(updateStats(stats))
+      dispatch(nextStep())
+    }
+  }
+}
+
+StartingStats = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(StartingStats)
 
 module.exports = StartingStats
