@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use strict';
 
 var path = require('path');
@@ -6,7 +7,7 @@ var HtmlPlugin = require('webpack-html-plugin');
 var HasteResolverPlugin = require('haste-resolver-webpack-plugin');
 
 var IP = '0.0.0.0';
-var PORT = 3000;
+var PORT = 3009;
 var NODE_ENV = process.env.NODE_ENV;
 var ROOT_PATH = path.resolve(__dirname, '..');
 var PROD = 'production';
@@ -28,6 +29,7 @@ module.exports = {
     alias: {
       'react-native': 'react-web',
       'ReactNativeART': 'react-art',
+      'ryuutama': path.join(ROOT_PATH, '.')
     },
     extensions: ['', '.js', '.jsx'],
   },
@@ -59,14 +61,21 @@ module.exports = {
     new HtmlPlugin(),
   ],
   module: {
-    loaders: [{
-      test: /\.json$/,
-      loader: 'json',
-    }, {
-      test: /\.jsx?$/,
-      loaders: ['react-hot', 'babel?stage=1'],
-      include: [config.paths.src],
-      exclude: [/node_modules/]
-    }, ]
+    loaders: [
+      {
+        test: /\.json$/,
+        loader: 'json',
+      },
+      {
+        test: /\.jsx?$/,
+        loaders: ['react-hot', 'babel?stage=1'],
+        include: [config.paths.src],
+        exclude: [/node_modules/]
+      },
+      {
+        test: /\.(eot|otf|svg|ttf|woff|woff2|png|jpg|gif)\w*/,
+        loader: 'file'
+      }
+    ]
   }
 };
