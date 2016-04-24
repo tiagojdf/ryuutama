@@ -1,11 +1,9 @@
 import { createStore, combineReducers } from 'redux'
-// import {AsyncStorage} from 'react-native'
+import {AsyncStorage} from 'react-native'
 import { player } from './player.reducer'
 import { step } from './step.reducer'
 
-// import {persistStore, autoRehydrate} from 'redux-persist'
-// const store = createStore(reducer, null, autoRehydrate())
-// persistStore(store)
+import {persistStore, autoRehydrate} from 'redux-persist'
 
 const store = (window.devToolsExtension ?
   window.devToolsExtension()(createStore)
@@ -18,8 +16,8 @@ const store = (window.devToolsExtension ?
     player: undefined,
     step: undefined,
   },
-  // autoRehydrate()
+  autoRehydrate()
 )
-// persistStore(store, {storage: AsyncStorage})
+persistStore(store, {storage: AsyncStorage})
 
 module.exports = store
