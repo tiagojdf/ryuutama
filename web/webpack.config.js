@@ -29,9 +29,8 @@ var webpackConfig = {
     alias: {
       'react-native': 'react-web',
       'ReactNativeART': 'react-art',
-      'ryuutama': path.join(ROOT_PATH, '.')
     },
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js','.ios.js', '.jsx'],
   },
   entry: isProd? [
     config.paths.index
