@@ -5,7 +5,7 @@ import React, {
   Image
 } from 'react-native'
 
-import styles from './Selector.styles'
+import styles from './Selector.styles.ios'
 
 var _ = require('lodash')
 
