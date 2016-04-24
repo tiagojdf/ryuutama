@@ -51,7 +51,7 @@ class StartingStats extends Component {
 
   render() {
     return (
-      <View style={[styles.container, !this.state.valid && styles.invalid]}>
+      <View style={styles.container}>
         <View style={styles.statsContainer}>
           {
             Object.keys(this.props.stats).map((STAT) => {return (
@@ -64,8 +64,8 @@ class StartingStats extends Component {
             )})
           }
         </View>
-        <TouchableHighlight onPress={() => this.props.onSelectStats(this.props.stats)}>
-          <View style={styles.select}>
+        <TouchableHighlight onPress={() => this.state.valid && this.props.onSelectStats(this.props.stats)}>
+          <View style={[styles.select, !this.state.valid && styles.invalid]}>
             <Text style={styles.selectText}> Select </Text>
           </View>
         </TouchableHighlight>
@@ -81,7 +81,7 @@ StartingStats.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    stats: state.player.stats
+    stats: Object.assign({}, state.player.stats)
   }
 }
 

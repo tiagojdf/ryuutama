@@ -14,8 +14,7 @@ export default StyleSheet.create({
     justifyContent: 'space-around'
   },
   invalid: {
-    borderColor: 'red',
-    borderWidth: 2,
+    backgroundColor: styleVariables.colors.springLightGreen,
   },
   select: {
     backgroundColor: styleVariables.colors.springDarkGreen,

@@ -7,7 +7,6 @@ import styleVariables from '../../../Config/styleVariables'
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
-    padding: 5,
     height: 60
   },
   button: {
