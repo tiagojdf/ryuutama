@@ -7,7 +7,9 @@ import {persistStore, autoRehydrate} from 'redux-persist'
 // const store = createStore(reducer, null, autoRehydrate())
 // persistStore(store)
 
-const store = createStore(
+const store = (window.devToolsExtension ?
+  window.devToolsExtension()(createStore)
+  : createStore)(
   combineReducers({
     player,
     step,
