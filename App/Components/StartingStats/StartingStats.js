@@ -4,13 +4,13 @@ import React, {
   TouchableHighlight,
   Component
 } from 'react-native'
+var StatSelector = require('../Common/StatSelector/StatSelector')
 
 import { connect } from 'react-redux'
 
 import {
   updateStats,
 } from '../../State/player.actions'
-
 import {nextStep} from '../../State/step.actions'
 
 import styles from './StartingStats.styles'
@@ -51,23 +51,24 @@ class StartingStats extends Component {
 
   render() {
     return (
-      <View style={[styles.container, !this.state.valid && styles.invalid]}>
-      {
-        Object.keys(this.props.stats).map((STAT) => {return (
-          <View key={STAT}>
-          <Text>{STAT}: {this.props.stats[STAT]}</Text>
-          <TouchableHighlight onPress={() => this._increase(STAT)}>
-            <Text> + </Text>
-          </TouchableHighlight>
-          <TouchableHighlight onPress={() => this._decrease(STAT)}>
-            <Text> - </Text>
-          </TouchableHighlight>
+      <View style={styles.container}>
+        <View style={styles.statsContainer}>
+          {
+            Object.keys(this.props.stats).map((STAT) => {return (
+              <StatSelector key={STAT}
+                styles={styles.stat}
+                stat={STAT}
+                value={this.props.stats[STAT]}
+                increase={() => this._increase(STAT)}
+                decrease={() => this._decrease(STAT)} />
+            )})
+          }
+        </View>
+        <TouchableHighlight onPress={() => this.state.valid && this.props.onSelectStats(this.props.stats)}>
+          <View style={[styles.select, !this.state.valid && styles.invalid]}>
+            <Text style={styles.selectText}> Select </Text>
           </View>
-        )})
-      }
-      <TouchableHighlight onPress={() => this.props.onSelectStats(this.props.stats)}>
-        <Text> Select </Text>
-      </TouchableHighlight>
+        </TouchableHighlight>
       </View>
     )
   }
@@ -80,7 +81,7 @@ StartingStats.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
-    stats: state.player.stats
+    stats: Object.assign({}, state.player.stats)
   }
 }
 
